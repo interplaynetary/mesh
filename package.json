@@ -10,7 +10,8 @@
       "types": "./dist/index.d.ts",
       "bun": "./src/index.ts",
       "import": "./dist/index.js"
-    }
+    },
+    "./src/*": "./src/*"
   },
   "files": [
     "src",
