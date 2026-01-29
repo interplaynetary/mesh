@@ -27,8 +27,8 @@ to get started using the API, and for more information.
 
 #### Or run locally
 
-- Run `npm install`
-- Run the server with `node src/index.js`
+- Run `bun install`
+- Run the server with `bun run src/index.ts`
 
 #### Once the server is running
 
@@ -38,6 +38,14 @@ the console
 
 ### Development
 
-- When modifying src files run: `npx prettier src --write && npm run build`
+- When modifying src files run: `bun run build`
 - When modifying tests run: `npx prettier test --write`
-- To run the tests use: `npm run test`
+- To run the tests use: `bun test`
+
+### License & Attribution
+
+This project is a TypeScript port and fork of [Holster](https://github.com/mblaney/holster) by Mark Nadal.
+
+The original code is licensed under MIT, Zlib, and Apache 2.0.
+Modifications and the typescript conversion are provided under the same terms.
+See [LICENSE.md](LICENSE.md) and [NOTICE](NOTICE) for details.
