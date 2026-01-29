@@ -107,10 +107,10 @@ export type GraphNode = z.infer<typeof GraphNodeSchema>
 bun run build:ts
 
 # Compile source + tests (optional - for production builds)
-bun run build:ts && npx tsc --project tsconfig.test.json
+bun run build:ts && bunx tsc --project tsconfig.test.json
 
 # Watch mode (auto-rebuild on changes)
-npx tsc --watch
+bunx tsc --watch
 ```
 
 **Output:** Compiled files go to `dist/src/` and `dist/test/`  
@@ -142,10 +142,10 @@ bun run test:ts:system
 
 ```bash
 # Check types without compiling
-npx tsc --noEmit
+bunx tsc --noEmit
 
 # Check specific file
-npx tsc --noEmit ts/src/mesh
+bunx tsc --noEmit ts/src/mesh
 ```
 
 ### Linting
@@ -657,7 +657,7 @@ For now, the documented skip and workaround are sufficient for production use.
 ### Pull Request Process
 
 1. Ensure all tests pass: `bun test`
-2. Type check: `npx tsc --noEmit`
+2. Type check: `bunx tsc --noEmit`
 3. Update tests if changing behavior
 4. Document breaking changes
 5. Update this README if adding features

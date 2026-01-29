@@ -39,7 +39,7 @@ the console
 ### Development
 
 - When modifying src files run: `bun run build`
-- When modifying tests run: `npx prettier test --write`
+- When modifying tests run: `bunx prettier test --write`
 - To run the tests use: `bun test`
 
 ### License & Attribution
