@@ -1,6 +1,6 @@
 import fs from "fs"
 import { Server } from "mock-socket"
-import { describe, test, expect } from "bun:test"
+import { describe, test, expect, afterAll } from "bun:test"
 import Mesh from "../src/mesh"
 import type { MeshAPI } from "../src/mesh"
 
@@ -80,9 +80,9 @@ describe("mesh.user.get", () => {
 
     const data2 = await new Promise(resolve => user.get("chained").next("unknown", resolve))
     expect(data2).toBe(null)
-  })
+  }),
 
-  test("cleanup", async () => {
-    await fs.promises.rm("test/mesh.user.get", { recursive: true, force: true })
-  })
+    afterAll(async () => {
+      await fs.promises.rm("test/mesh.user.get", { recursive: true, force: true })
+    })
 })

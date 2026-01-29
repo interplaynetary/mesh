@@ -1,6 +1,6 @@
 import fs from "fs"
 import { Server } from "mock-socket"
-import { describe, test, expect } from "bun:test"
+import { describe, test, expect, afterAll } from "bun:test"
 import Mesh from "../src/mesh"
 import type { MeshAPI } from "../src/mesh"
 
@@ -66,7 +66,7 @@ describe("mesh.get", () => {
     expect(data2).toBe(null)
   })
 
-  test("cleanup", async () => {
+  afterAll(async () => {
     await fs.promises.rm("test/mesh.get", { recursive: true, force: true })
   })
 })

@@ -1,5 +1,6 @@
-import { describe, test, expect } from "bun:test"
+import { describe, test, expect, afterAll } from "bun:test"
 import { Server } from "mock-socket"
+import fs from "fs"
 import Wire from "../src/wire"
 import Dup from "../src/dup"
 import HAM from "../src/ham"
@@ -83,9 +84,14 @@ describe("wire - advanced features", () => {
       expect(dup.check(id)).toBe(id) // Returns ID string when duplicate
 
       // Wait for expiry (need to wait for maxAge + cleanup delay)
-      await new Promise(resolve => setTimeout(resolve, 100))
+      await new Promise(resolve => setTimeout(resolve, 50))
 
-      expect(dup.check(id)).toBe(false) // Returns false when expired
+      // Trigger cleanup by tracking a new message
+      dup.track("trigger")
+
+      // Check the store directly instead of using check() which would refresh the timestamp
+      expect(dup.store[id]).toBeUndefined() // Should be deleted from store
+      expect(dup.check(id)).toBe(false) // Returns false when not in store
     })
 
     test("dup handles multiple concurrent messages", () => {
@@ -102,16 +108,26 @@ describe("wire - advanced features", () => {
     test("dup cleans up expired messages", async () => {
       const dup = Dup(20) // 20ms maxAge
 
+      // Track 10 messages
       for (let i = 0; i < 10; i++) {
         dup.track(`msg${i}`)
       }
 
-      // Wait for expiry + cleanup
-      await new Promise(resolve => setTimeout(resolve, 100))
+      // Verify messages are tracked
+      expect(Object.keys(dup.store).length).toBeGreaterThanOrEqual(10)
 
-      // All messages should be expired
+      // Wait for messages to expire (longer than maxAge)
+      await new Promise(resolve => setTimeout(resolve, 25))
+
+      // Track a new message to trigger the cleanup timer
+      dup.track("trigger")
+
+      // Wait for the cleanup timer to fire (maxAge + buffer)
+      await new Promise(resolve => setTimeout(resolve, 25))
+
+      // Check the store directly - all old messages should be deleted
       for (let i = 0; i < 10; i++) {
-        expect(dup.check(`msg${i}`)).toBe(false)
+        expect(dup.store[`msg${i}`]).toBeUndefined()
       }
     })
   })
@@ -413,5 +429,21 @@ describe("wire - advanced features", () => {
 
       expect(msg.put?.nodeA?.ref).toEqual({ "#": "nodeB" })
     })
+  })
+
+  afterAll(async () => {
+    // Clean up all test directories created by wire-advanced tests
+    const testDirs = [
+      "test/wire-advanced-get",
+      "test/wire-advanced-put",
+      "test/wire-advanced-missing",
+      "test/wire-routing",
+    ]
+
+    await Promise.all(
+      testDirs.map(dir =>
+        fs.promises.rm(dir, { recursive: true, force: true })
+      )
+    )
   })
 })

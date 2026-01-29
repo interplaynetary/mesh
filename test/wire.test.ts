@@ -1,6 +1,6 @@
 import fs from "fs"
 import { Server } from "mock-socket"
-import { describe, test, expect } from "bun:test"
+import { describe, test, expect, afterAll } from "bun:test"
 import Wire from "../src/wire"
 import type { WireInterface } from "../src/schemas"
 
@@ -152,8 +152,8 @@ describe("wire", () => {
     })
   })
 
-  test("cleanup", async () => {
-    // Timeout to let extra wire sends finish before tests end.
+  afterAll(async () => {
+    // Timeout to let extra wire sends finish before cleanup
     await new Promise(resolve => setTimeout(resolve, 100))
     await fs.promises.rm("test/wire", { recursive: true, force: true })
   })

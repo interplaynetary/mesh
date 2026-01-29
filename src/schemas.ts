@@ -174,6 +174,7 @@ export const WireMessageSchema = z.object({
   put: GraphSchema.optional(),
   err: z.string().optional(),
   throttle: z.number().optional(),
+  hello: z.object({ pub: z.string() }).optional(),
 })
 export type WireMessage = z.infer<typeof WireMessageSchema>
 

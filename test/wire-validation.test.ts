@@ -1,5 +1,6 @@
-import { describe, test, expect } from "bun:test"
+import { describe, test, expect, afterAll } from "bun:test"
 import { Server } from "mock-socket"
+import fs from "fs"
 import Wire from "../src/wire"
 import type { Graph } from "../src/schemas"
 
@@ -323,7 +324,7 @@ describe("Wire - message validation and lifecycle", () => {
       const wss = new Server("ws://localhost:9965")
       const wire = Wire({ file: "test/wire-rapid-listeners", wss, maxAge: 10 })
 
-      const callback = () => {}
+      const callback = () => { }
 
       // Rapidly add and remove listeners
       for (let i = 0; i < 100; i++) {
@@ -336,5 +337,33 @@ describe("Wire - message validation and lifecycle", () => {
     })
 
     // Operations without server already tested in "handles operations without WebSocket server" at line 116
+  })
+
+  afterAll(async () => {
+    // Clean up all test directories created by wire-validation tests
+    const testDirs = [
+      "test/wire-invalid-json",
+      "test/wire-empty",
+      "test/wire-malformed",
+      "test/wire-small",
+      "test/wire-large",
+      "test/wire-init",
+      "test/wire-no-wss",
+      "test/wire-concurrent-get",
+      "test/wire-concurrent-put",
+      "test/wire-null",
+      "test/wire-special",
+      "test/wire-nested",
+      "test/wire-wildcard",
+      "test/wire-multi-listeners",
+      "test/wire-error-recovery",
+      "test/wire-rapid-listeners",
+    ]
+
+    await Promise.all(
+      testDirs.map(dir =>
+        fs.promises.rm(dir, { recursive: true, force: true })
+      )
+    )
   })
 })

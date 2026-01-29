@@ -44,7 +44,7 @@ the console
 
 ### License & Attribution
 
-This project is a TypeScript port of [Holster](https://github.com/mblaney/holster) by Mark Nadal with major enhancements and features.
+This project is a TypeScript port of [Mesh](https://github.com/interplaynetary/mesh) by Mark Nadal with major enhancements and features.
 
 The original code is licensed under MIT, Zlib, and Apache 2.0.
 Modifications and the typescript conversion are provided under the same terms.

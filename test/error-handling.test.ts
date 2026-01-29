@@ -18,8 +18,8 @@ describe("error handling - validation and edge cases", () => {
       expect(() =>
         Radisk({
           store: {
-            put: () => {},
-            list: () => {},
+            put: () => { },
+            list: () => { }
           },
         } as RadiskOptions)
       ).toThrow("Radisk needs `store.get` interface with `(file, cb)`")
@@ -29,8 +29,8 @@ describe("error handling - validation and edge cases", () => {
       expect(() =>
         Radisk({
           store: {
-            get: () => {},
-            list: () => {},
+            get: () => { },
+            list: () => { }
           },
         } as RadiskOptions)
       ).toThrow("Radisk needs `store.put` interface with `(file, data, cb)`")
@@ -40,8 +40,8 @@ describe("error handling - validation and edge cases", () => {
       expect(() =>
         Radisk({
           store: {
-            get: () => {},
-            put: () => {},
+            get: () => { },
+            put: () => { }
           },
         } as RadiskOptions)
       ).toThrow("Radisk needs a streaming `store.list` interface with `(cb)`")
@@ -258,8 +258,8 @@ describe("error handling - validation and edge cases", () => {
         put: (_data: any, cb?: (err: string | null) => void) => {
           if (cb) cb(null)
         },
-        on: () => {},
-        off: () => {},
+        on: () => { },
+        off: () => { },
       } as any
 
       const user = User({ file: "test/user-error", wait: 100 }, mockWire)
@@ -281,8 +281,8 @@ describe("error handling - validation and edge cases", () => {
         put: (_data: any, cb?: (err: string | null) => void) => {
           if (cb) cb(null)
         },
-        on: () => {},
-        off: () => {},
+        on: () => { },
+        off: () => { },
       } as any
 
       const user = User({ file: "test/user-notfound", wait: 100 }, mockWire)
@@ -321,8 +321,8 @@ describe("error handling - validation and edge cases", () => {
         put: (_data: any, cb?: (err: string | null) => void) => {
           if (cb) cb(null)
         },
-        on: () => {},
-        off: () => {},
+        on: () => { },
+        off: () => { },
       } as any
 
       const user = User({ file: "test/user-wrongpass", wait: 100 }, mockWire)
@@ -345,8 +345,8 @@ describe("error handling - validation and edge cases", () => {
           // Simulate put error
           if (cb) cb("Database write failed")
         },
-        on: () => {},
-        off: () => {},
+        on: () => { },
+        off: () => { },
       } as any
 
       const user = User({ file: "test/user-create-error", wait: 100 }, mockWire)
@@ -368,8 +368,8 @@ describe("error handling - validation and edge cases", () => {
         put: (_data: any, cb?: (err: string | null) => void) => {
           if (cb) cb(null)
         },
-        on: () => {},
-        off: () => {},
+        on: () => { },
+        off: () => { },
       } as any
 
       const user = User({ file: "test/user-create-get-error", wait: 100 }, mockWire)
@@ -391,14 +391,14 @@ describe("error handling - validation and edge cases", () => {
         put: (_data: any, cb?: (err: string | null) => void) => {
           if (cb) cb(null)
         },
-        on: () => {},
-        off: () => {},
+        on: () => { },
+        off: () => { },
       } as any
 
       const user = User({ file: "test/user-concurrent", wait: 100 }, mockWire)
 
       // Start first auth (will be slow)
-      user.auth("testuser", "password", () => {})
+      user.auth("testuser", "password", () => { })
 
       // Try second auth immediately
       const error = await new Promise<string | null | undefined>(resolve => {
@@ -417,14 +417,14 @@ describe("error handling - validation and edge cases", () => {
         put: (_data: any, cb?: (err: string | null) => void) => {
           if (cb) cb(null)
         },
-        on: () => {},
-        off: () => {},
+        on: () => { },
+        off: () => { },
       } as any
 
       const user = User({ file: "test/user-concurrent-create", wait: 100 }, mockWire)
 
       // Start first create (will be slow)
-      user.create("testuser", "password", () => {})
+      user.create("testuser", "password", () => { })
 
       // Try second create immediately
       const error = await new Promise<string | null | undefined>(resolve => {
@@ -461,8 +461,8 @@ describe("error handling - validation and edge cases", () => {
           // Fail on the password change put
           if (cb) cb("Storage quota exceeded")
         },
-        on: () => {},
-        off: () => {},
+        on: () => { },
+        off: () => { },
       } as any
 
       const user = User({ file: "test/user-change-error", wait: 100 }, mockWire)
@@ -500,8 +500,8 @@ describe("error handling - validation and edge cases", () => {
           // Fail the deletion put
           if (cb) cb("Permission denied")
         },
-        on: () => {},
-        off: () => {},
+        on: () => { },
+        off: () => { },
       } as any
 
       const user = User({ file: "test/user-delete-error", wait: 100 }, mockWire)
@@ -522,14 +522,14 @@ describe("error handling - validation and edge cases", () => {
         put: (_data: any, cb?: (err: string | null) => void) => {
           if (cb) cb(null)
         },
-        on: () => {},
-        off: () => {},
+        on: () => { },
+        off: () => { },
       } as any
 
       const user = User({ file: "test/user-delete-concurrent", wait: 100 }, mockWire)
 
       // Start auth (will be slow)
-      user.auth("testuser", "password", () => {})
+      user.auth("testuser", "password", () => { })
 
       // Try delete immediately
       const error = await new Promise<string | null | undefined>(resolve => {
@@ -547,14 +547,14 @@ describe("error handling - validation and edge cases", () => {
         put: (_data: any, cb?: (err: string | null) => void) => {
           if (cb) cb(null)
         },
-        on: () => {},
-        off: () => {},
+        on: () => { },
+        off: () => { },
       } as any
 
       const user = User({ file: "test/user-change-concurrent", wait: 100 }, mockWire)
 
       // Start auth (will be slow)
-      user.auth("testuser", "password", () => {})
+      user.auth("testuser", "password", () => { })
 
       // Try change immediately
       const error = await new Promise<string | null | undefined>(resolve => {

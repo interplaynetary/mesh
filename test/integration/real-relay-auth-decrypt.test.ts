@@ -5,15 +5,14 @@
 
 import { describe, test, expect } from "bun:test"
 import Mesh from "../../src/mesh"
-import type { MeshAPI } from "../../src/mesh"
 import SEA from "../../src/sea"
 
 describe("Integration - Real relay decryption test", () => {
-  const RELAY_URL = "wss://mesh.playnet.lol"
+  const RELAY_URL = "wss://holster.haza.website"
   const USERNAME = "testUser" // Replace with actual username for testing
 
   // NOTE: Replace with actual password for testing
-  const TEST_PASSWORD = "test_password_here" // REPLACE THIS
+  const TEST_PASSWORD = "To093yat34" // REPLACE THIS
 
   test("attempts to authenticate and decrypt", async () => {
     const mesh = Mesh({
@@ -29,7 +28,7 @@ describe("Integration - Real relay decryption test", () => {
     console.log(`[TEST] Username: ${USERNAME}`)
     console.log(`[TEST] Password: ${TEST_PASSWORD === "test_password_here" ? "NOT SET - UPDATE TEST" : "SET"}`)
 
-    if (TEST_PASSWORD === "test_password_here") {
+    if (TEST_PASSWORD === "To093yat34") {
       console.warn("[TEST] ⚠️  UPDATE THE TEST_PASSWORD CONSTANT TO TEST AUTHENTICATION")
       console.log("[TEST] The actual password needs to be provided to test decryption")
       return
@@ -122,7 +121,7 @@ describe("Integration - Real relay decryption test", () => {
     console.log("[TEST] Auth salt:", auth.salt)
     console.log("[TEST] Auth enc:", JSON.stringify(auth.enc))
 
-    if (TEST_PASSWORD !== "test_password_here") {
+    if (TEST_PASSWORD !== "To093yat34") {
       console.log("[TEST]")
       console.log("[TEST] Testing decryption with provided password...")
 

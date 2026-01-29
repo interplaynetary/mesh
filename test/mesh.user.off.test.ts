@@ -1,6 +1,6 @@
 import fs from "fs"
 import { Server } from "mock-socket"
-import { describe, test, expect } from "bun:test"
+import { describe, test, expect, afterAll } from "bun:test"
 import Mesh from "../src/mesh"
 import type { MeshAPI } from "../src/mesh"
 
@@ -75,14 +75,14 @@ describe("mesh.user.off", () => {
 
     // Callback should not have been called since all listeners were removed
     expect(updates).toHaveLength(0)
-  })
+  }),
 
-  test("cleanup", async () => {
-    await new Promise<void>((resolve, reject) => {
-      fs.rm("test/mesh.user.off", { recursive: true, force: true }, err => {
-        if (err) reject(err)
-        else resolve()
+    afterAll(async () => {
+      await new Promise<void>((resolve, reject) => {
+        fs.rm("test/mesh.user.off", { recursive: true, force: true }, err => {
+          if (err) reject(err)
+          else resolve()
+        })
       })
     })
-  })
 })

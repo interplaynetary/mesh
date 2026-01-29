@@ -1140,6 +1140,6 @@ This is **"A subscription-routed, XOR-navigated message fabric"** - not a DHT, b
 ---
 
 **See also:**
-- [DAM Protocol Specification](src/dam.md) - Detailed DAM algorithm
-- [Curation Notes](src/cur-update.md) - Subscriber vs DHT clarifications
+- [DAM Protocol Specification](docs/dam.md) - Detailed DAM algorithm
+- [Curation Notes](docs/cur-update.md) - Subscriber vs DHT clarifications
 - [Test Suite](test/integration/) - Integration tests with real relay

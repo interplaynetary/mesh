@@ -1,6 +1,6 @@
 import fs from "fs"
 import { Server } from "mock-socket"
-import { describe, test, expect } from "bun:test"
+import { describe, test, expect, afterAll } from "bun:test"
 import Mesh from "../src/mesh"
 import type { MeshAPI } from "../src/mesh"
 
@@ -272,15 +272,15 @@ describe("mesh.user.on", () => {
     expect(childUpdates[0]).toEqual(update.child)
     user.get("nested").off(parentCallback)
     user.get("nested").next("child").off(childCallback)
-  })
+  }),
 
-  test("cleanup", async () => {
-    await new Promise(resolve => setTimeout(resolve, 100))
-    await new Promise<void>((resolve, reject) => {
-      fs.rm("test/mesh.user.on", { recursive: true, force: true }, err => {
-        if (err) reject(err)
-        else resolve()
+    afterAll(async () => {
+      await new Promise(resolve => setTimeout(resolve, 100))
+      await new Promise<void>((resolve, reject) => {
+        fs.rm("test/mesh.user.on", { recursive: true, force: true }, err => {
+          if (err) reject(err)
+          else resolve()
+        })
       })
     })
-  })
 })

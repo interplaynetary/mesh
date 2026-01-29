@@ -1,15 +1,15 @@
 /**
  * Integration test - Real relay server authentication debugging
- * Tests connection to wss://mesh.playnet.lol and authentication flow
+ * Tests connection to wss://holster.haza.website and authentication flow
  * Based on issues described in test.md
  */
 
-import { describe, test, expect } from "bun:test"
+import { describe, test, expect, afterAll } from "bun:test"
 import Mesh from "../../src/mesh"
 import type { MeshAPI } from "../../src/mesh"
 
 describe("Integration - Real relay authentication (@ruzgar)", () => {
-  const RELAY_URL = "wss://mesh.playnet.lol"
+  const RELAY_URL = "wss://holster.haza.website"
   const USERNAME = "@ruzgar"
   const ALIAS = `~${USERNAME}`
 
@@ -267,10 +267,11 @@ describe("Integration - Real relay authentication (@ruzgar)", () => {
 })
 
 describe("Integration - Real relay write test", () => {
-  const RELAY_URL = "wss://mesh.playnet.lol"
+  const RELAY_URL = "wss://holster.haza.website"
+  let mesh: MeshAPI
 
   test("can write and read back test data", async () => {
-    const mesh = Mesh({
+    mesh = Mesh({
       peers: [RELAY_URL],
       file: "test/integration/real-relay-write",
     })

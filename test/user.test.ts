@@ -1,6 +1,6 @@
 import fs from "fs"
 import { Server } from "mock-socket"
-import { describe, test, expect } from "bun:test"
+import { describe, test, expect, afterAll } from "bun:test"
 import User from "../src/user"
 import type { UserInterface } from "../src/schemas"
 
@@ -129,9 +129,9 @@ describe("user", () => {
     const err = await new Promise(resolve => user.auth("alice", "new password", resolve))
     expect(err).toBe("Wrong username or password")
     expect(user.is).toBe(null)
-  })
+  }),
 
-  test("cleanup", async () => {
-    await fs.promises.rm("test/user", { recursive: true, force: true })
-  })
+    afterAll(async () => {
+      await fs.promises.rm("test/user", { recursive: true, force: true })
+    })
 })
