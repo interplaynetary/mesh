@@ -1,21 +1,45 @@
 {
-  "name": "@playnet/mesh",
-  "version": "1.0.35",
+  "name": "@interplaynetary/mesh",
+  "version": "1.0.36",
   "description": "Mesh is a service that allows synchronising data between devices using Node, Deno, Bun or the browser.",
   "type": "module",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE.md",
+    "NOTICE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "start": "bun src/index.ts",
     "test": "bun test",
     "test:ts": "bun test test/**/*.test.ts",
     "test:ts:system": "bun test test/system/**/*.test.ts",
-    "build": "esbuild src/mesh.js --bundle --format=esm --sourcemap \"--external:node:*\" \"--external:ws\" --minify --outdir=build",
+    "build": "bun run build:ts && bun run build:browser",
     "build:ts": "tsc",
-    "build:all": "bun run build:ts && bun run build",
+    "build:browser": "esbuild src/index.ts --bundle --format=esm --sourcemap \"--external:node:*\" \"--external:ws\" --minify --outdir=build",
+    "prepublishOnly": "bun run build",
     "type-check": "tsc --noEmit",
     "type-check:tests": "tsc --noEmit --project tsconfig.test.json"
   },
-  "keywords": [],
+  "keywords": [
+    "mesh",
+    "sync",
+    "p2p",
+    "graph",
+    "database",
+    "typescript"
+  ],
   "author": "Playnet",
   "license": "Zlib, MIT, Apache-2.0",
   "dependencies": {

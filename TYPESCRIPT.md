@@ -104,10 +104,10 @@ export type GraphNode = z.infer<typeof GraphNodeSchema>
 
 ```bash
 # Compile TypeScript source
-npm run build:ts
+bun run build:ts
 
 # Compile source + tests (optional - for production builds)
-npm run build:ts && npx tsc --project tsconfig.test.json
+bun run build:ts && npx tsc --project tsconfig.test.json
 
 # Watch mode (auto-rebuild on changes)
 npx tsc --watch
@@ -120,7 +120,7 @@ npx tsc --watch
 
 ```bash
 # Run all TypeScript tests (recommended)
-npm run test:ts
+bun run test:ts
 # or manually
 node --test ts/test/**/*.test ts/test/system/**/*.test
 
@@ -131,7 +131,7 @@ node --test ts/test/mesh.get.test
 node --test --test-name-pattern="put and get" ts/test/**/*.test
 
 # Run only system tests
-npm run test:ts:system
+bun run test:ts:system
 ```
 
 **Test Framework:** Node.js native test runner  
@@ -440,7 +440,7 @@ node --inspect-brk --test ts/test/your-test.test
 
 **"Cannot find module" errors:**
 - Ensure imports use `` extensions for TypeScript files
-- Check that all dependencies are installed (`npm install`)
+- Check that all dependencies are installed (`bun install`)
 
 **Type errors in tests:**
 - Add type assertions: `as unknown as Type`
@@ -656,7 +656,7 @@ For now, the documented skip and workaround are sufficient for production use.
 
 ### Pull Request Process
 
-1. Ensure all tests pass: `npm test`
+1. Ensure all tests pass: `bun test`
 2. Type check: `npx tsc --noEmit`
 3. Update tests if changing behavior
 4. Document breaking changes

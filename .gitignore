@@ -6,5 +6,9 @@
 
 # misc
 *~
-npm-debug.log
+bun-debug.log
 .DS_Store
+
+# build artifacts
+/dist
+/build

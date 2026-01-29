@@ -8,7 +8,7 @@ Let me break down every component of DAM-SRA and recommend battle-tested browser
 
 ### **simple-peer** (Recommended)
 ```bash
-npm install simple-peer
+bun install simple-peer
 ```
 
 ```javascript
@@ -55,7 +55,7 @@ peer.send(JSON.stringify(message)) // Send data
 
 ### **k-bucket** (Kademlia Implementation)
 ```bash
-npm install k-bucket
+bun install k-bucket
 ```
 
 ```javascript
@@ -101,7 +101,7 @@ const bucket = kbucket.get(Buffer.from(peerId, 'hex'))
 
 ### **bn.js** (BigNumber library)
 ```bash
-npm install bn.js
+bun install bn.js
 ```
 
 ```javascript
@@ -139,9 +139,9 @@ const position = peerId.mod(new BN(2).pow(new BN(160)))
 
 ### **js-sha1** or **crypto-browserify**
 ```bash
-npm install js-sha1
+bun install js-sha1
 # or
-npm install crypto-browserify
+bun install crypto-browserify
 ```
 
 ```javascript
@@ -176,9 +176,9 @@ async function sha1(data) {
 
 ### **lru-cache** or **quick-lru**
 ```bash
-npm install lru-cache
+bun install lru-cache
 # or (smaller)
-npm install quick-lru
+bun install quick-lru
 ```
 
 ```javascript
@@ -211,7 +211,7 @@ dedupList.set(msg.id, true)
 
 ### **bloomfilter.js**
 ```bash
-npm install bloomfilter
+bun install bloomfilter
 ```
 
 ```javascript
@@ -248,7 +248,7 @@ const serialized = Array.from(filter.buckets)
 
 ### **msgpack-lite** or **JSON**
 ```bash
-npm install msgpack-lite
+bun install msgpack-lite
 ```
 
 ```javascript
@@ -279,7 +279,7 @@ const decoded = JSON.parse(received)
 
 ### **eventemitter3** (Browser-optimized)
 ```bash
-npm install eventemitter3
+bun install eventemitter3
 ```
 
 ```javascript
@@ -338,7 +338,7 @@ relay.onerror = (error) => {
 
 ### **localforage** (IndexedDB wrapper)
 ```bash
-npm install localforage
+bun install localforage
 ```
 
 ```javascript
@@ -374,9 +374,9 @@ await localforage.setItem('routing_table',
 
 ### **uuid** or **nanoid**
 ```bash
-npm install uuid
+bun install uuid
 # or (smaller)
-npm install nanoid
+bun install nanoid
 ```
 
 ```javascript
@@ -723,7 +723,7 @@ If you want less assembly required:
 
 ### **libp2p-js** (IPFS stack)
 ```bash
-npm install libp2p
+bun install libp2p
 ```
 
 **Pros:** 
@@ -737,7 +737,7 @@ npm install libp2p
 
 ### **Bugout** (WebTorrent-based)
 ```bash
-npm install bugout
+bun install bugout
 ```
 
 ```javascript
