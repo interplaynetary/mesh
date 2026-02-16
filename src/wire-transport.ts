@@ -477,7 +477,7 @@ const WireTransport = (opt: WireTransportOptions): WireAPI => {
         }
 
         // Route via FingerTable, fallback to broadcast to all connected transports
-        const routedSend = async (data: string) => {
+        const routedSend = async (data: string): Promise<{ err?: string } | void> => {
             // Try FingerTable routing first
             try {
                 const msg = JSON.parse(data) as WireMessage
