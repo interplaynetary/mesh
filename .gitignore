@@ -12,6 +12,7 @@ bun-debug.log
 # environment
 .env
 .env.local
+.npmrc
 
 # build artifacts
 /dist

@@ -1,6 +1,6 @@
 {
   "name": "@playnet/mesh",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Mesh is a service that allows synchronising data between devices using Node, Deno, Bun or the browser.",
   "type": "module",
   "main": "./dist/index.js",
