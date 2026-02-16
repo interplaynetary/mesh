@@ -1,0 +1,18 @@
+# dependencies
+/node_modules
+
+# storage
+/radata
+
+# misc
+*~
+bun-debug.log
+.DS_Store
+
+# environment
+.env
+.env.local
+
+# build artifacts
+/dist
+/build

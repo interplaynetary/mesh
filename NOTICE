@@ -1,0 +1,8 @@
+This software is a derivative work of [Mesh](https://github.com/interplaynetary/mesh), originally created by Mark Nadal.
+
+This project is a TypeScript port of the original Mesh repository with major enhancements and features.
+
+Original Copyright (c) 2015 Mark Nadal
+Licensed under MIT, Zlib, and Apache 2.0.
+
+Modifications Copyright (c) 2026 Playnet

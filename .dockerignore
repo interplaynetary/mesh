@@ -1,0 +1,9 @@
+node_modules
+bun-debug.log
+.git
+.gitignore
+.github
+README.md
+.DS_Store
+build
+.env
